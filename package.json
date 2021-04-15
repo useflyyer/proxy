@@ -1,6 +1,6 @@
 {
   "name": "@flayyer/proxy",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Helper function to proxy images via Flayyer network to bypass CORS",
   "keywords": [
     "flayyer",
@@ -40,10 +40,8 @@
       "eslint --fix"
     ]
   },
-  "dependencies": {
-  },
-  "peerDependencies": {
-  },
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
     "@flayyer/eslint-config": "^1.0.6",
     "@types/jest": "^26.0.22",
