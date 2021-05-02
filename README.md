@@ -4,6 +4,8 @@ Helper function to proxy images via Flayyer network to bypass CORS with Typescri
 
 We made this for [Flayyer.com](https://flayyer.com?ref=github) to enable developers to create content-aware marketing and social images. Beware this is intended to use inside Flayyer templates created with [`create-flayyer-app`](https://github.com/flayyer/create-flayyer-app).
 
+**Note: This proxy service is only available and allowed for Flayyer templates where bypassing CORS is necessary for images or data.**
+
 ## Usage
 
 Install this dependency:
