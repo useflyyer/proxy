@@ -1,6 +1,6 @@
 {
   "name": "@flayyer/proxy",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Helper function to proxy images via Flayyer network to bypass CORS",
   "keywords": [
     "flayyer",
