@@ -16,11 +16,16 @@
 export function proxy(src: string): string {
   if (!src) return src;
   try {
+    const isAbsolute = EXTERNAL_URL_REGEX.test(src);
+    if (isAbsolute) {
+      // Ensure protocol
+      src = FORCE_HTTPS(src);
+    }
     const url = new URL(src);
-    const isHTTP = url.protocol === "http:" || url.protocol === "https:";
     const isFlayyer = url.hostname === "flayyer.io" || url.hostname === "flayyer.ai";
+
     // TODO: add list of CORS enabled services so proxy is not necessary.
-    if (isHTTP && !isFlayyer) {
+    if (isAbsolute && !isFlayyer) {
       return "https://flayyer.io/proxy/v1?url=" + encodeURIComponent(src);
     } else {
       return src;
@@ -29,3 +34,14 @@ export function proxy(src: string): string {
     return src;
   }
 }
+
+/**
+ * https://stackoverflow.com/a/61934195/3416691
+ */
+export const FORCE_HTTPS = (url: string) =>
+  url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schema, nonSchemaURL) => (schema ? match : `https://${nonSchemaURL}`));
+
+/**
+ * https://stackoverflow.com/a/19709846/3416691
+ */
+export const EXTERNAL_URL_REGEX = new RegExp("^(?:[a-z]+:)?//", "i");
