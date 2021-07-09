@@ -1,10 +1,10 @@
 /**
- * Returns an URL to proxy request via Flayyer network.
+ * Returns an URL to proxy request via flyyer network.
  *
- * Use this to bypass CORS issues when creating Flayyers.
+ * Use this to bypass CORS issues when creating flyyers.
  *
- * @example <caption>Example with https://github.com/flayyer/use-smartcrop</caption>
- * import { proxy } from "@flayyer/proxy";
+ * @example <caption>Example with https://github.com/useflyyer/use-smartcrop</caption>
+ * import { proxy } from "@flyyer/proxy";
  * import { useSmartcrop } from "use-smartcrop";
  *
  * export default function MainTemplate({ width, height, variables }) {
@@ -22,11 +22,11 @@ export function proxy(src: string): string {
       src = FORCE_HTTPS(src);
     }
     const url = new URL(src);
-    const isFlayyer = url.hostname === "flayyer.io" || url.hostname === "flayyer.ai";
+    const isFlyyer = url.hostname === "cdn.flyyer.io";
 
     // TODO: add list of CORS enabled services so proxy is not necessary.
-    if (isAbsolute && !isFlayyer) {
-      return "https://flayyer.io/proxy/v1?url=" + encodeURIComponent(src);
+    if (isAbsolute && !isFlyyer) {
+      return "https://cdn.flyyer.io/proxy/v1?url=" + encodeURIComponent(src);
     } else {
       return src;
     }
