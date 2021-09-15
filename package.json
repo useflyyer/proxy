@@ -1,6 +1,6 @@
 {
   "name": "@flyyer/proxy",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Helper function to proxy images via Flyyer CDN network to bypass CORS",
   "keywords": [
     "flyyer",
