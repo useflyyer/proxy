@@ -32,11 +32,6 @@ export const LOOPBACK_REGEX = new RegExp("^localhost$|^127(?:.[0-9]+){0,2}.[0-9]
 export function proxy(src: string): string {
   if (!src) return src;
   try {
-    const isLoopback = LOOPBACK_REGEX.test(src);
-    if (isLoopback) {
-      return src;
-    }
-
     const isAbsolute = EXTERNAL_URL_REGEX.test(src);
     if (isAbsolute) {
       // Ensure protocol
@@ -44,6 +39,11 @@ export function proxy(src: string): string {
     }
 
     const url = new URL(src);
+
+    const isLoopback = LOOPBACK_REGEX.test(url.hostname);
+    if (isLoopback) {
+      return src;
+    }
 
     const isFlyyer = url.hostname === "cdn.flyyer.io";
 

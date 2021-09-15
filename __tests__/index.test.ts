@@ -13,7 +13,7 @@ describe("proxy", () => {
     const proxied = proxy("/image.png");
     expect(proxied).toEqual("/image.png");
   });
-  test.each(["localhost", "LOCALhost", "0.0.0.0", "127.0.0.1", "0:0:0:0:0:0:0:1"])(
+  test.each(["localhost", "LOCALhost", "0.0.0.0", "127.0.0.1", "0:0:0:0:0:0:0:1", "http://localhost:3000/image.png"])(
     "doesn't wrap loopback addresses: %s",
     (loopback) => {
       const proxied = proxy(loopback);
