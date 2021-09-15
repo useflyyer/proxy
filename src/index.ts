@@ -10,6 +10,11 @@ export const FORCE_HTTPS = (url: string) =>
 export const EXTERNAL_URL_REGEX = new RegExp("^(?:[a-z]+:)?//", "i");
 
 /**
+ * https://stackoverflow.com/a/8426365/3416691
+ */
+export const LOOPBACK_REGEX = new RegExp("^localhost$|^127(?:.[0-9]+){0,2}.[0-9]+$|^(?:0*:)*?:?0*1$");
+
+/**
  * Returns an URL to proxy request via flyyer network.
  *
  * Use this to bypass CORS issues when creating flyyers.
@@ -27,12 +32,19 @@ export const EXTERNAL_URL_REGEX = new RegExp("^(?:[a-z]+:)?//", "i");
 export function proxy(src: string): string {
   if (!src) return src;
   try {
+    const isLoopback = LOOPBACK_REGEX.test(src);
+    if (isLoopback) {
+      return src;
+    }
+
     const isAbsolute = EXTERNAL_URL_REGEX.test(src);
     if (isAbsolute) {
       // Ensure protocol
       src = FORCE_HTTPS(src);
     }
+
     const url = new URL(src);
+
     const isFlyyer = url.hostname === "cdn.flyyer.io";
 
     // TODO: add list of CORS enabled services so proxy is not necessary.

@@ -13,4 +13,11 @@ describe("proxy", () => {
     const proxied = proxy("/image.png");
     expect(proxied).toEqual("/image.png");
   });
+  test.each(["localhost", "LOCALhost", "0.0.0.0", "127.0.0.1", "0:0:0:0:0:0:0:1"])(
+    "doesn't wrap loopback addresses: %s",
+    (loopback) => {
+      const proxied = proxy(loopback);
+      expect(proxied).toEqual(loopback);
+    },
+  );
 });
