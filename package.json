@@ -8,13 +8,17 @@
     "proxy",
     "typescript"
   ],
-  "main": "dist/proxy.es5.js",
-  "module": "dist/proxy.esm.js",
-  "typings": "dist/proxy.d.ts",
-  "sideEffects": false,
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "engines": {
+    "node": ">=12"
+  },
+  "sideEffects": false,
   "author": "Patricio López Juri <patricio@flyyer.io>",
   "repository": {
     "type": "git",
@@ -23,12 +27,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "rollup -c rollup.config.ts",
-    "prepublishOnly": "yarn run build",
-    "start": "rollup -c rollup.config.ts -w",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
-    "test": "jest"
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
   },
   "husky": {
     "hooks": {
@@ -43,37 +48,16 @@
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
-    "@flyyer/eslint-config": "^2.0.0",
-    "@types/jest": "^27.0.1",
+    "@flyyer/eslint-config": "^2.1.1",
+    "babel-jest": "^27.2.0",
     "eslint": "^7.32.0",
+    "eslint-plugin-jest": "^24.4.0",
     "husky": "^4.3",
-    "jest": "^27.2.0",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.0",
-    "rollup": "^2.56.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-sourcemaps": "^0.6.3",
-    "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
     "typescript": "^4.4.3"
-  },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
-    },
-    "testEnvironment": "jsdom",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ]
   }
 }

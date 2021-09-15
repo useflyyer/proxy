@@ -1,4 +1,4 @@
-import { proxy } from "../src/proxy";
+import { proxy } from "../src";
 
 describe("proxy", () => {
   it("wraps URL that may required proxy", () => {

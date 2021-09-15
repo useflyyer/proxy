@@ -1,4 +1,15 @@
 /**
+ * https://stackoverflow.com/a/61934195/3416691
+ */
+export const FORCE_HTTPS = (url: string) =>
+  url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schema, nonSchemaURL) => (schema ? match : `https://${nonSchemaURL}`));
+
+/**
+ * https://stackoverflow.com/a/19709846/3416691
+ */
+export const EXTERNAL_URL_REGEX = new RegExp("^(?:[a-z]+:)?//", "i");
+
+/**
  * Returns an URL to proxy request via flyyer network.
  *
  * Use this to bypass CORS issues when creating flyyers.
@@ -34,14 +45,3 @@ export function proxy(src: string): string {
     return src;
   }
 }
-
-/**
- * https://stackoverflow.com/a/61934195/3416691
- */
-export const FORCE_HTTPS = (url: string) =>
-  url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schema, nonSchemaURL) => (schema ? match : `https://${nonSchemaURL}`));
-
-/**
- * https://stackoverflow.com/a/19709846/3416691
- */
-export const EXTERNAL_URL_REGEX = new RegExp("^(?:[a-z]+:)?//", "i");
