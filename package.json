@@ -10,7 +10,7 @@
   ],
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "module": "dist/index.esm.js",
+  "module": "dist/proxy.esm.js",
   "files": [
     "dist",
     "src"
